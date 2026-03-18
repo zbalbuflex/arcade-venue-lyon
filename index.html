@@ -505,8 +505,29 @@
             display: none;
         }
     
-@media(max-width:768px){.header{padding:1rem .5rem}.header h1{font-size:1.3rem}.header p{font-size:.8rem}.nav-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0;padding:0;scrollbar-width:none}.nav-tabs::-webkit-scrollbar{display:none}.nav-tab{padding:.6rem .8rem;font-size:.7rem;white-space:nowrap;flex-shrink:0}.container{padding:.8rem}.properties-grid{grid-template-columns:1fr!important;gap:1rem}.section-header h2{font-size:1.3rem}.stat-grid{grid-template-columns:repeat(2,1fr);gap:.5rem}.stat-card{padding:.8rem}.stat-card .number{font-size:1.5rem}.zone-card{flex-direction:column}.reg-section{padding:1rem}.filters{gap:.3rem}.filter-btn{padding:.4rem .8rem;font-size:.7rem}}@media(max-width:480px){.header h1{font-size:1rem}.stat-grid{grid-template-columns:1fr 1fr}}.property-card{transition:transform .4s ease,box-shadow .4s ease}.property-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(108,92,231,.2)}
-</style>
+        @media(max-width:768px){
+            .header{padding:1rem 0.5rem}
+            .header h1{font-size:1.3rem}
+            .nav-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0;scrollbar-width:none}
+            .nav-tabs::-webkit-scrollbar{display:none}
+            .nav-tab{padding:0.6rem 0.8rem;font-size:0.7rem;white-space:nowrap;flex-shrink:0}
+            .container{padding:0.8rem}
+            .properties-grid{grid-template-columns:1fr!important;gap:1rem}
+            .stat-grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
+            .stat-card{padding:0.8rem}
+            .stat-card .number{font-size:1.5rem}
+            .zone-card{flex-direction:column}
+            .filters{gap:0.3rem}
+            .filter-btn{padding:0.4rem 0.8rem;font-size:0.7rem}
+        }
+        @media(max-width:480px){
+            .header h1{font-size:1rem}
+            .stat-grid{grid-template-columns:1fr 1fr}
+            .property-card img{height:160px}
+        }
+        .property-card{transition:transform 0.4s ease,box-shadow 0.4s ease}
+        .property-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(108,92,231,0.2)}
+    </style>
 </head>
 <body>
     <!-- Header -->
@@ -1254,7 +1275,7 @@
 
         function createPropertyCard(prop, isStade = false) {
             const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${prop.lon - 0.01},${prop.lat - 0.01},${prop.lon + 0.01},${prop.lat + 0.01}&layer=mapnik&marker=${prop.lat},${prop.lon}`;
-            const _z=14,_x=Math.floor((prop.lon+180)/360*Math.pow(2,_z)),_y=Math.floor((1-Math.log(Math.tan(prop.lat*Math.PI/180)+1/Math.cos(prop.lat*Math.PI/180))/Math.PI)/2*Math.pow(2,_z));const imageUrl=`https://tile.openstreetmap.org/${_z}/${_x}/${_y}.png`;
+            const imageUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=300&center=lonlat:${prop.lon},${prop.lat}&zoom=14&marker=lonlat:${prop.lon},${prop.lat};color:%23c9a44c;size:medium&apiKey=6dc7fb95a3b246cfa0f3bcef5ce9ed9a`;
 
             let stadiumBadge = '';
             let distanceBadge = '';
@@ -1383,7 +1404,9 @@
             renderProperties(propertiesStades, 'stades-grid', true);
         });
     </script>
-
-<script>const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:.1});document.querySelectorAll('.property-card,.stat-card,.zone-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all .5s ease';obs.observe(el)});</script>
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:0.1});
+document.querySelectorAll('.property-card,.stat-card,.zone-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all 0.5s ease';obs.observe(el)});
+</script>
 </body>
 </html>
