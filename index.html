@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -504,30 +504,139 @@
         .hidden {
             display: none;
         }
+    
+        /* Property image enhancements */
+        .property-image {
+            overflow: hidden;
+            position: relative;
+            border-radius: 12px 12px 0 0;
+        }
+        .property-image img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .property-image a {
+            display: block;
+            overflow: hidden;
+        }
 
-        @media(max-width:768px){
-            .header{padding:1rem 0.5rem}
-            .header h1{font-size:1.3rem}
-            .nav-tabs{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;gap:0;scrollbar-width:none}
-            .nav-tabs::-webkit-scrollbar{display:none}
-            .nav-tab{padding:0.6rem 0.8rem;font-size:0.7rem;white-space:nowrap;flex-shrink:0}
-            .container{padding:0.8rem}
-            .properties-grid{grid-template-columns:1fr!important;gap:1rem}
-            .stat-grid{grid-template-columns:repeat(2,1fr);gap:0.5rem}
-            .stat-card{padding:0.8rem}
-            .stat-card .number{font-size:1.5rem}
-            .zone-card{flex-direction:column}
-            .filters{gap:0.3rem}
-            .filter-btn{padding:0.4rem 0.8rem;font-size:0.7rem}
+        /* ========== MOBILE RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .header {
+                padding: 1rem 0.5rem;
+            }
+            .header h1 {
+                font-size: 1.3rem;
+            }
+            .header p {
+                font-size: 0.8rem;
+            }
+            .tab-navigation {
+                gap: 0.25rem;
+                padding: 0.25rem 0;
+            }
+            .tab-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 0.75rem;
+            }
+            .property-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            .property-card {
+                margin: 0;
+            }
+            .property-map {
+                height: 150px !important;
+            }
+            .section-title {
+                font-size: 1.3rem;
+            }
+            .filters {
+                flex-direction: column;
+            }
+            .filter-group {
+                flex-wrap: wrap;
+                gap: 0.25rem;
+            }
+            .filter-btn {
+                padding: 0.4rem 0.6rem;
+                font-size: 0.75rem;
+            }
+            .data-table {
+                font-size: 0.75rem;
+                display: block;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .data-table th, .data-table td {
+                padding: 0.5rem;
+                white-space: nowrap;
+            }
+            .property-content {
+                padding: 0.75rem;
+            }
+            .property-title {
+                font-size: 1rem;
+            }
+            .property-description {
+                font-size: 0.8rem;
+            }
+            .property-details {
+                gap: 0.5rem;
+            }
+            .detail-row {
+                flex-direction: column;
+                gap: 0.15rem;
+            }
+            .property-tags {
+                gap: 0.25rem;
+            }
+            .tag {
+                font-size: 0.7rem;
+                padding: 0.2rem 0.5rem;
+            }
+            .property-address, .property-gps {
+                font-size: 0.75rem;
+            }
+            .property-price {
+                margin-top: 0.5rem;
+            }
+            .price-value {
+                font-size: 1.1rem;
+            }
         }
-        @media(max-width:480px){
-            .header h1{font-size:1rem}
-            .stat-grid{grid-template-columns:1fr 1fr}
-            .property-card img{height:160px}
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr !important;
+            }
+            .header h1 {
+                font-size: 1.1rem;
+            }
+            .tab-btn {
+                padding: 0.4rem 0.5rem;
+                font-size: 0.7rem;
+            }
+            .section {
+                padding: 0.5rem;
+            }
         }
-        .property-card{transition:transform 0.4s ease,box-shadow 0.4s ease}
-        .property-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(108,92,231,0.2)}
+
     </style>
+
+    <script>
+    function handleImgError(img, lat, lon) {
+        img.onerror = null;
+        img.src = 'https://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=15&size=600x300&maptype=mapnik&markers=' + lat + ',' + lon + ',lightblue';
+    }
+    </script>
 </head>
 <body>
     <!-- Header -->
@@ -885,6 +994,7 @@
         const propertiesLocaux = [
             {
                 id: 1,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/63906870334896738737835_1.jpg",
                 title: "Entrepôt divisible — Lot 1",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -901,6 +1011,7 @@
             },
             {
                 id: 2,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/262_639074853152934648262_1.jpg",
                 title: "Local d'activités — Parc sécurisé",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -912,11 +1023,12 @@
                 lon: 4.9510,
                 type: "Local",
                 description: "Local d'activités de 500 m² dans un parc sécurisé. 290 m² activités + 210 m² bureaux. Proximité Rocade Est, A43, RN6. Potentiel d'extension avec lots adjacents pour atteindre 600+ m².",
-                link: "https://www.seloger-bureaux-commerces.com/annonces/achat/local-d-activites-entrepot/saint-priest-69800/251178551",
+                link: "https://www.geolocaux.com/annonce/vente-entrepot-500-m2-non-divisible-689194.html",
                 tags: ["Parc sécurisé", "Bureaux inclus", "Surface < 600m²"]
             },
             {
                 id: 3,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/63903774189228185313259_1.jpg",
                 title: "Entrepôt divisible — Lot 2",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -933,6 +1045,7 @@
             },
             {
                 id: 4,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/262_639074431522292987262_1.jpg",
                 title: "Parc d'activités neuf — Cellules modulables",
                 zone: "Corbas ZI",
                 commune: "Corbas",
@@ -944,11 +1057,12 @@
                 lon: 4.8980,
                 type: "Parc",
                 description: "Nouveau parc d'activités à Corbas. Modulable à partir de 189 m². Mezzanines livrées en état brut. Proximité A46, Boulevard Urbain Sud. Zone de 350 hectares avec 1 125 établissements.",
-                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/corbas-69960/vente-entrepots",
+                link: "https://www.geolocaux.com/annonce/locaux-d-activite-a-vendre-corbas-proximite-transports-636580.html",
                 tags: ["Neuf", "Mezzanine incluse", "Modulable", "A46 / BUS"]
             },
             {
                 id: 5,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/424_639004124682508328424_1.jpg",
                 title: "Local d'activités — Parc Pressense",
                 zone: "Vénissieux",
                 commune: "Vénissieux",
@@ -965,6 +1079,7 @@
             },
             {
                 id: 6,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/496_639020977137666799496_1.jpg",
                 title: "Entrepôt / Local d'activités",
                 zone: "Villeurbanne",
                 commune: "Villeurbanne",
@@ -981,6 +1096,7 @@
             },
             {
                 id: 7,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/99829_63905438290265520399829_1.jpg",
                 title: "Lot d'activités mixte",
                 zone: "Meyzieu",
                 commune: "Meyzieu",
@@ -997,6 +1113,7 @@
             },
             {
                 id: 8,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/fa151aa9-3129-4c58-bb7f-52c16e4b68b0_j00.jpg",
                 title: "Local d'activité — Ouest Lyonnais",
                 zone: "Dardilly",
                 commune: "Dardilly",
@@ -1013,6 +1130,7 @@
             },
             {
                 id: 9,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/ec5ec4e1-0464-4ebd-ad94-d4adcc19b573_j00.jpg",
                 title: "Local d'activité — Techlid / Monts d'Or",
                 zone: "Limonest",
                 commune: "Limonest",
@@ -1029,6 +1147,7 @@
             },
             {
                 id: 10,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/1204_6386790030372489751204_1.jpg",
                 title: "Programme neuf — Atelier 8",
                 zone: "Décines/Bron",
                 commune: "Décines",
@@ -1040,11 +1159,12 @@
                 lon: 4.9630,
                 type: "Neuf",
                 description: "Programme neuf « Atelier 8 » par Savills Lyon. 900 m² d'espaces d'activité au RDC, divisibles à partir de 250 m². Livraison Q3 2026. Construction neuve aux dernières normes. Idéal aménagement sur mesure.",
-                link: "https://immobilier.cbre.fr/vente-entrepots/rhone-alpes.aspx",
+                link: "https://www.geolocaux.com/annonce/bureaux-et-ateliers-a-vendre-decines-charpieu-proche-tram-t3-395226.html",
                 tags: ["Neuf 2026", "Sur mesure", "Divisible"]
             },
             {
                 id: 11,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/432_638851041735647017432_1.jpg",
                 title: "Local d'activité avec jardin privatif",
                 zone: "Lyon Centre",
                 commune: "Lyon",
@@ -1064,6 +1184,7 @@
         const propertiesTerrains = [
             {
                 id: 101,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/69002_63889607310758546869002_1.jpg",
                 title: "Terrain industriel — 1,5 hectare",
                 zone: "Givors",
                 commune: "Givors",
@@ -1080,6 +1201,7 @@
             },
             {
                 id: 102,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/55403364-283c-4119-b23e-44cf0582bc23_j00.jpg",
                 title: "Terrain industriel — 8,255 m²",
                 zone: "Givors",
                 commune: "Givors",
@@ -1096,6 +1218,7 @@
             },
             {
                 id: 103,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/672932b0-9e98-4798-a6c3-a968a3a2a06a_j00.jpg",
                 title: "Terrain mixte bureaux/industrie/labo",
                 zone: "Bron",
                 commune: "Bron",
@@ -1112,6 +1235,7 @@
             },
             {
                 id: 104,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/496_638608858620191666496_1.jpg",
                 title: "Terrain artisanal — Route d'Anse",
                 zone: "Limas",
                 commune: "Limas",
@@ -1128,6 +1252,7 @@
             },
             {
                 id: 105,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/7cc65764-6c49-4427-be76-032918838c4f_j00.jpg",
                 title: "ZAC des Plattières — Extension",
                 zone: "Saint-Laurent-d'Agny",
                 commune: "Saint-Laurent-d'Agny",
@@ -1144,6 +1269,7 @@
             },
             {
                 id: 106,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/88711_63904071880643766488711_1.jpg",
                 title: "Terrain zone Ui — 5,094 m²",
                 zone: "Lyon Est",
                 commune: "Lyon",
@@ -1163,6 +1289,7 @@
         const propertiesStades = [
             {
                 id: 201,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/99829_63899735622142006099829_1.jpg",
                 title: "Bâtiment d'activité — Décines Centre",
                 zone: "ZI La Soie / Décines",
                 commune: "Décines-Charpieu",
@@ -1177,10 +1304,11 @@
                 stadium: "LDLC Arena",
                 distance: "~2 km",
                 tags: ["Carré de Soie", "Tram T3", "2km LDLC Arena"],
-                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/decines-charpieu-69150/vente-entrepots"
+                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-decines-charpieu-proximite-transports-et-axes-routiers-668424.html"
             },
             {
                 id: 202,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/432_638798344762772171432_1.jpg",
                 title: "Ensemble immobilier 2 bâtiments — Décines",
                 zone: "Parc d'activités des Pivolles",
                 commune: "Décines-Charpieu",
@@ -1195,10 +1323,11 @@
                 stadium: "LDLC Arena",
                 distance: "~1.5 km",
                 tags: ["Rénové 2015", "2 bâtiments", "6028m² terrain", "1.5km LDLC Arena"],
-                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/decines-charpieu-69150/vente-entrepots"
+                link: "https://www.geolocaux.com/annonce/locaux-d-activites-a-vendre-decines-charpieu-proche-bus-623040.html"
             },
             {
                 id: 203,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/844d89fa-9017-41fe-8d9d-c17ef3ba4fc6_j00.jpg",
                 title: "Local d'activité indépendant — 2,300 m²",
                 zone: "Zone d'activités Décines",
                 commune: "Décines-Charpieu",
@@ -1213,10 +1342,11 @@
                 stadium: "Groupama Stadium",
                 distance: "~2.5 km",
                 tags: ["2300m²", "Indépendant", "Non divisible", "Groupama Stadium 2.5km"],
-                link: "https://www.bnppre.fr/a-vendre/local-activite/rhone-69/decines-charpieu-69150/vente-local-activite-2300-m2-non-divisible-OVACT2426978.html"
+                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-decines-charpieu-ideal-centre-de-formation-591103.html"
             },
             {
                 id: 204,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/69002_63880290497745287069002_1.jpg",
                 title: "Bâtiment d'activité mixte — Chassieu",
                 zone: "ZI Mi-Plaine Chassieu",
                 commune: "Chassieu",
@@ -1235,6 +1365,7 @@
             },
             {
                 id: 205,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/516cb5c3-576e-4047-86d1-05355d3398ef_j00.jpg",
                 title: "Local d'activités — Chassieu Centre ZI",
                 zone: "ZI Mi-Plaine",
                 commune: "Chassieu",
@@ -1249,10 +1380,11 @@
                 stadium: "Groupama Stadium",
                 distance: "~3.5 km",
                 tags: ["ZI Mi-Plaine", "A43/A46", "3.5km Groupama"],
-                link: "https://www.bnppre.fr/a-vendre/local-activite/rhone-69/chassieu-69680/"
+                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-chassieu-686116.html"
             },
             {
                 id: 206,
+                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/faed007b-1e72-4ded-9843-79be9da28dd4_j00.jpg",
                 title: "Entrepôt logistique — Meyzieu",
                 zone: "ZI Meyzieu-Jonage",
                 commune: "Meyzieu",
@@ -1275,7 +1407,8 @@
 
         function createPropertyCard(prop, isStade = false) {
             const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${prop.lon - 0.01},${prop.lat - 0.01},${prop.lon + 0.01},${prop.lat + 0.01}&layer=mapnik&marker=${prop.lat},${prop.lon}`;
-            const imageUrl = `https://maps.geoapify.com/v1/staticmap?style=osm-bright-smooth&width=600&height=300&center=lonlat:${prop.lon},${prop.lat}&zoom=14&marker=lonlat:${prop.lon},${prop.lat};color:%23c9a44c;size:medium&apiKey=6dc7fb95a3b246cfa0f3bcef5ce9ed9a`;
+            const fallbackImg = `https://staticmap.openstreetmap.de/staticmap.php?center=${prop.lat},${prop.lon}&zoom=15&size=600x300&maptype=mapnik&markers=${prop.lat},${prop.lon},lightblue`;
+            const imageUrl = prop.imageUrl || fallbackImg;
 
             let stadiumBadge = '';
             let distanceBadge = '';
@@ -1292,7 +1425,7 @@
             return `
                 <div class="property-card">
                     <div class="property-image">
-                        <img src="${imageUrl}" alt="${prop.title}" loading="lazy">
+                        <a href="${prop.link}" target="_blank" title="Voir les photos de l\'annonce" style="display:block;cursor:pointer;position:relative;overflow:hidden;"><img src="${imageUrl}" alt="${prop.title}" loading="lazy" style="transition:transform 0.3s ease;width:100%;height:200px;object-fit:cover;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="handleImgError(this,${prop.lat},${prop.lon})"><span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:white;padding:4px 12px;border-radius:6px;font-size:0.75rem;pointer-events:none;">Voir les photos</span></a>
                         <div class="property-type-badge">${prop.type}</div>
                         ${distanceBadge}
                         ${stadiumBadge}
@@ -1403,11 +1536,6 @@
             renderProperties(propertiesTerrains, 'terrains-grid');
             renderProperties(propertiesStades, 'stades-grid', true);
         });
-    </script>
-
-    <script>
-    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:0.1});
-    document.querySelectorAll('.property-card,.stat-card,.zone-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all 0.5s ease';obs.observe(el)});
     </script>
 </body>
 </html>
