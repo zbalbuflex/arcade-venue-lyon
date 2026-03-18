@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -504,7 +504,7 @@
         .hidden {
             display: none;
         }
-    
+
         @media(max-width:768px){
             .header{padding:1rem 0.5rem}
             .header h1{font-size:1.3rem}
@@ -1404,9 +1404,10 @@
             renderProperties(propertiesStades, 'stades-grid', true);
         });
     </script>
-<script>
-const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:0.1});
-document.querySelectorAll('.property-card,.stat-card,.zone-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all 0.5s ease';obs.observe(el)});
-</script>
+
+    <script>
+    const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.style.opacity='1';x.target.style.transform='translateY(0)'}})},{threshold:0.1});
+    document.querySelectorAll('.property-card,.stat-card,.zone-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(20px)';el.style.transition='all 0.5s ease';obs.observe(el)});
+    </script>
 </body>
 </html>
