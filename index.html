@@ -473,51 +473,6 @@
             }
         }
 
-
-        /* Surface Details Breakdown */
-        .surface-breakdown {
-            background: rgba(108, 92, 231, 0.08);
-            border: 1px solid rgba(108, 92, 231, 0.25);
-            border-radius: 8px;
-            padding: 0.75rem;
-            margin-top: 0.75rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .surface-breakdown-title {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 0.5rem;
-            display: flex;
-            align-items: center;
-            gap: 0.4rem;
-        }
-
-        .surface-breakdown-content {
-            font-size: 0.82rem;
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-family: 'JetBrains Mono', monospace;
-        }
-
-        .surface-breakdown-content .sb-item {
-            display: inline;
-        }
-
-        .surface-breakdown-content .sb-separator {
-            color: var(--accent);
-            margin: 0 0.15rem;
-            opacity: 0.5;
-        }
-
-        .surface-highlight {
-            color: var(--accent-light);
-            font-weight: 600;
-        }
-
         /* Loading Animation */
         .loading {
             display: inline-block;
@@ -549,32 +504,7 @@
         .hidden {
             display: none;
         }
-    
-        /* Property image enhancements */
-        .property-image {
-            overflow: hidden;
-            position: relative;
-            border-radius: 12px 12px 0 0;
-        }
-        .property-image img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            display: block;
-        }
-        .property-image a {
-            display: block;
-            overflow: hidden;
-        }
-
     </style>
-
-    <script>
-    function handleImgError(img, lat, lon) {
-        img.onerror = null;
-        img.src = 'https://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=15&size=600x300&maptype=mapnik&markers=' + lat + ',' + lon + ',lightblue';
-    }
-    </script>
 </head>
 <body>
     <!-- Header -->
@@ -932,7 +862,6 @@
         const propertiesLocaux = [
             {
                 id: 1,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/63906870334896738737835_1.jpg",
                 title: "Entrepôt divisible — Lot 1",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -945,12 +874,10 @@
                 type: "Entrepôt",
                 description: "Lot 1 d'un entrepôt de 1 094 m² divisible en deux lots indépendants. Situé en ZI Mi-Plaine, proximité Rocade Est, A43 et RN6. Accès poids lourds. Zone sécurisée avec 1 300+ entreprises.",
                 link: "https://www.seloger-bureaux-commerces.com/achat/local-d-activites-entrepot/rhone-alpes/rhone/saint-priest-69800",
-                tags: ["Parking", "ZI Mi-Plaine", "Accès PL", "Rocade Est"],
-                surfaceDetails: "Bâtiment : 610 m² (Lot 1 sur 1 094 m² divisible) · Terrain : non précisé · Parking : oui · Hauteur : non précisée"
+                tags: ["Parking", "ZI Mi-Plaine", "Accès PL", "Rocade Est"]
             },
             {
                 id: 2,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/262_639074853152934648262_1.jpg",
                 title: "Local d'activités — Parc sécurisé",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -962,13 +889,11 @@
                 lon: 4.9510,
                 type: "Local",
                 description: "Local d'activités de 500 m² dans un parc sécurisé. 290 m² activités + 210 m² bureaux. Proximité Rocade Est, A43, RN6. Potentiel d'extension avec lots adjacents pour atteindre 600+ m².",
-                link: "https://www.geolocaux.com/annonce/vente-entrepot-500-m2-non-divisible-689194.html",
-                tags: ["Parc sécurisé", "Bureaux inclus", "Surface < 600m²"],
-                surfaceDetails: "Activités RDC : 290 m² · Bureaux étage : 210 m² · Parking : oui (nb n.c.) · Hauteur sous poutre : 5,90 m · Porte sectionnelle : 4×4,5 m · Clim réversible"
+                link: "https://www.seloger-bureaux-commerces.com/annonces/achat/local-d-activites-entrepot/saint-priest-69800/251178551",
+                tags: ["Parc sécurisé", "Bureaux inclus", "Surface < 600m²"]
             },
             {
                 id: 3,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/63903774189228185313259_1.jpg",
                 title: "Entrepôt divisible — Lot 2",
                 zone: "Saint-Priest ZI Mi-Plaine",
                 commune: "Saint-Priest",
@@ -981,12 +906,10 @@
                 type: "Entrepôt",
                 description: "Lot 2 de l'entrepôt divisible de 1 094 m². Combinable avec Lot 1 pour un ensemble de 1 094 m² à 1 240 000 € HT. Idéal pour grand espace arcade avec mezzanine.",
                 link: "https://www.geolocaux.com/vente/entrepot/saint-priest-69800/",
-                tags: ["Divisible", "Combinable Lot 1", "Surface < 600m²"],
-                surfaceDetails: "Bâtiment : 484 m² (Lot 2 sur 1 094 m² divisible) · Combinable avec Lot 1 = 1 094 m² total · Terrain : non précisé"
+                tags: ["Divisible", "Combinable Lot 1", "Surface < 600m²"]
             },
             {
                 id: 4,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/262_639074431522292987262_1.jpg",
                 title: "Parc d'activités neuf — Cellules modulables",
                 zone: "Corbas ZI",
                 commune: "Corbas",
@@ -998,13 +921,11 @@
                 lon: 4.8980,
                 type: "Parc",
                 description: "Nouveau parc d'activités à Corbas. Modulable à partir de 189 m². Mezzanines livrées en état brut. Proximité A46, Boulevard Urbain Sud. Zone de 350 hectares avec 1 125 établissements.",
-                link: "https://www.geolocaux.com/annonce/locaux-d-activite-a-vendre-corbas-proximite-transports-636580.html",
-                tags: ["Neuf", "Mezzanine incluse", "Modulable", "A46 / BUS"],
-                surfaceDetails: "Cellule type : 338 m² (Activités 256 m² + Mezzanine 41 m² + Bureaux 41 m²) · 4 places parking · Hauteur libre : 6,50 m · Locaux neufs · Porte sectionnelle"
+                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/corbas-69960/vente-entrepots",
+                tags: ["Neuf", "Mezzanine incluse", "Modulable", "A46 / BUS"]
             },
             {
                 id: 5,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/424_639004124682508328424_1.jpg",
                 title: "Local d'activités — Parc Pressense",
                 zone: "Vénissieux",
                 commune: "Vénissieux",
@@ -1017,12 +938,10 @@
                 type: "Local",
                 description: "Local d'activité dans le parc Pressensé. Excellent accès via Boulevard Urbain Sud, Rocade Est. Zone industrielle majeure de 350 hectares. Parking privatif. Tramway T4 à proximité.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/venissieux-69200/vente-entrepots",
-                tags: ["Parking privatif", "Tramway T4", "BUS / Rocade Est"],
-                surfaceDetails: "Bâtiment : ~800 m² · Terrain : non précisé · Parking privatif · Détails surfaces non disponibles sur l'annonce"
+                tags: ["Parking privatif", "Tramway T4", "BUS / Rocade Est"]
             },
             {
                 id: 6,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/496_639020977137666799496_1.jpg",
                 title: "Entrepôt / Local d'activités",
                 zone: "Villeurbanne",
                 commune: "Villeurbanne",
@@ -1035,12 +954,10 @@
                 type: "Entrepôt",
                 description: "Locaux d'activités à Villeurbanne. Prix moyen 2 554 €/m² (proche Lyon centre). Excellent réseau transports (métro A, bus, tramway). Zone très fréquentée et sécurisée.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/villeurbanne-69100/vente-entrepots",
-                tags: ["Métro A", "Tramway", "Prix élevé"],
-                surfaceDetails: "Surface : variable selon lots · Prix moyen : 2 554 €/m² · Détails surfaces non disponibles — annonce générique zone"
+                tags: ["Métro A", "Tramway", "Prix élevé"]
             },
             {
                 id: 7,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/99829_63905438290265520399829_1.jpg",
                 title: "Lot d'activités mixte",
                 zone: "Meyzieu",
                 commune: "Meyzieu",
@@ -1053,12 +970,10 @@
                 type: "Mixte",
                 description: "Lot d'activités mixte à Meyzieu, 514 m² dans un parc d'activités. Accès A46 et autoroutes. Tramway T3 terminus. Commune en développement avec nombreuses ZA. Potentiel d'extension.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/meyzieu-69330/vente-entrepots",
-                tags: ["Tramway T3", "Parc d'activités", "Surface < 600m²"],
-                surfaceDetails: "Bâtiment : 514 m² · Terrain : non précisé · Détails surfaces non disponibles sur l'annonce"
+                tags: ["Tramway T3", "Parc d'activités", "Surface < 600m²"]
             },
             {
                 id: 8,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/fa151aa9-3129-4c58-bb7f-52c16e4b68b0_j00.jpg",
                 title: "Local d'activité — Ouest Lyonnais",
                 zone: "Dardilly",
                 commune: "Dardilly",
@@ -1071,12 +986,10 @@
                 type: "Local",
                 description: "Zone commerciale de Dardilly. Prix moyen 875 €/m² — l'un des plus compétitifs de la métropole. Proximité A6 nord. Grande zone commerciale Porte de Lyon avec forte fréquentation.",
                 link: "https://www.arthur-loyd-lyon.com/locaux-activite-entrepots-vente/grand-lyon-nord-ouest/dardilly-69570",
-                tags: ["Prix compétitif", "Forte fréquentation", "Porte de Lyon", "A6"],
-                surfaceDetails: "Surface : variable selon lots · Prix moyen : 875 €/m² · Détails surfaces non disponibles — annonce générique zone"
+                tags: ["Prix compétitif", "Forte fréquentation", "Porte de Lyon", "A6"]
             },
             {
                 id: 9,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/ec5ec4e1-0464-4ebd-ad94-d4adcc19b573_j00.jpg",
                 title: "Local d'activité — Techlid / Monts d'Or",
                 zone: "Limonest",
                 commune: "Limonest",
@@ -1089,12 +1002,10 @@
                 type: "Local",
                 description: "Parcs d'activités Sans-Souci, Evolic ou Tuileries à Limonest. Prix moyen 2 107 €/m². Zone premium avec excellente image. Environnement qualitatif Techlid.",
                 link: "https://www.arthur-loyd-lyon.com/locaux-activite-entrepots-vente/grand-lyon-nord-ouest/limonest-69760",
-                tags: ["Zone premium", "Techlid", "Prix élevé"],
-                surfaceDetails: "Surface : variable selon lots · Prix moyen : 2 107 €/m² · Détails surfaces non disponibles — annonce générique zone"
+                tags: ["Zone premium", "Techlid", "Prix élevé"]
             },
             {
                 id: 10,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/1204_6386790030372489751204_1.jpg",
                 title: "Programme neuf — Atelier 8",
                 zone: "Décines/Bron",
                 commune: "Décines",
@@ -1106,13 +1017,11 @@
                 lon: 4.9630,
                 type: "Neuf",
                 description: "Programme neuf « Atelier 8 » par Savills Lyon. 900 m² d'espaces d'activité au RDC, divisibles à partir de 250 m². Livraison Q3 2026. Construction neuve aux dernières normes. Idéal aménagement sur mesure.",
-                link: "https://www.geolocaux.com/annonce/bureaux-et-ateliers-a-vendre-decines-charpieu-proche-tram-t3-395226.html",
-                tags: ["Neuf 2026", "Sur mesure", "Divisible"],
-                surfaceDetails: "Cellules : 250 à 900 m² (divisibles) · Programme D-SIDE DIPTYK · 3 600+ m² bureaux dès 138 m² · BREEAM Very Good · Parking sous-sol · Tram T3 + Métro A"
+                link: "https://immobilier.cbre.fr/vente-entrepots/rhone-alpes.aspx",
+                tags: ["Neuf 2026", "Sur mesure", "Divisible"]
             },
             {
                 id: 11,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/432_638851041735647017432_1.jpg",
                 title: "Local d'activité avec jardin privatif",
                 zone: "Lyon Centre",
                 commune: "Lyon",
@@ -1125,15 +1034,13 @@
                 type: "Local",
                 description: "Offre rare : local d'activité de 612 m² avec jardin privatif de 620 m² en plein cœur de Lyon. Le jardin pourrait servir de parking ou d'espace extérieur. Localisation exceptionnelle pour clientèle urbaine.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/lyon-69000/vente-entrepots",
-                tags: ["Jardin 620 m²", "Centre Lyon", "Vérifier zonage"],
-                surfaceDetails: "Bâtiment : 612 m² · Jardin privatif : 620 m² · Parking sous-sol : 5 places (possible) · Monte-charge · Structure béton · DPE D · Copropriété 21 lots"
+                tags: ["Jardin 620 m²", "Centre Lyon", "Vérifier zonage"]
             }
         ];
 
         const propertiesTerrains = [
             {
                 id: 101,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/69002_63889607310758546869002_1.jpg",
                 title: "Terrain industriel — 1,5 hectare",
                 zone: "Givors",
                 commune: "Givors",
@@ -1146,12 +1053,10 @@
                 type: "Terrain",
                 description: "Vaste terrain de 1,5 hectare constructible pour projets industriels et/ou tertiaires. Suffisant pour un complexe arcade de grande envergure avec parking massif.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/rhone-69/vente-terrains",
-                tags: ["Grande surface", "Industriel / Tertiaire", "Vérifier transports"],
-                surfaceDetails: "Terrain constructible : 15 000 m² (1,5 ha) · Usage : industriel / tertiaire · Pas de bâtiment existant"
+                tags: ["Grande surface", "Industriel / Tertiaire", "Vérifier transports"]
             },
             {
                 id: 102,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/55403364-283c-4119-b23e-44cf0582bc23_j00.jpg",
                 title: "Terrain industriel — 8,255 m²",
                 zone: "Givors",
                 commune: "Givors",
@@ -1164,12 +1069,10 @@
                 type: "Terrain",
                 description: "Terrain de 8 255 m² constructible. Suffisant pour bâtiment RDC + étage de 1 000+ m² avec grand parking.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/rhone-69/vente-terrains",
-                tags: ["Constructible", "Industriel / Tertiaire", "Éloigné centre"],
-                surfaceDetails: "Terrain constructible : 8 255 m² · Usage : industriel / tertiaire · Pas de bâtiment existant"
+                tags: ["Constructible", "Industriel / Tertiaire", "Éloigné centre"]
             },
             {
                 id: 103,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/672932b0-9e98-4798-a6c3-a968a3a2a06a_j00.jpg",
                 title: "Terrain mixte bureaux/industrie/labo",
                 zone: "Bron",
                 commune: "Bron",
@@ -1182,12 +1085,10 @@
                 type: "Terrain",
                 description: "Terrain de 4 835 m² à Bron, idéal pour bureaux/industrie/labo. Constructible RDC + étage. Tramway T5 et métro D. Proximité aéroport Lyon-Bron et A43.",
                 link: "https://www.malsh.com/vente/terrain",
-                tags: ["Tramway T5", "Bonne localisation", "Zone UI"],
-                surfaceDetails: "Terrain constructible : 4 835 m² · Zone UI PLU · Usage : bureaux / industrie / labo · RDC + étage possible"
+                tags: ["Tramway T5", "Bonne localisation", "Zone UI"]
             },
             {
                 id: 104,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/496_638608858620191666496_1.jpg",
                 title: "Terrain artisanal — Route d'Anse",
                 zone: "Limas",
                 commune: "Limas",
@@ -1200,12 +1101,10 @@
                 type: "Terrain",
                 description: "Terrain constructible de 1 000 m² pour activités artisanales. Proximité A450 et A7, à 20 min du centre de Lyon. Bonne visibilité. Vérifier si usage loisirs autorisé.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/rhone-69/vente-terrains",
-                tags: ["Artisanal", "A450 / A7", "Vérifier usage loisirs"],
-                surfaceDetails: "Terrain constructible : 1 000 m² · Usage : artisanal · Vérifier autorisation loisirs"
+                tags: ["Artisanal", "A450 / A7", "Vérifier usage loisirs"]
             },
             {
                 id: 105,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/7cc65764-6c49-4427-be76-032918838c4f_j00.jpg",
                 title: "ZAC des Plattières — Extension",
                 zone: "Saint-Laurent-d'Agny",
                 commune: "Saint-Laurent-d'Agny",
@@ -1218,12 +1117,10 @@
                 type: "ZAC",
                 description: "Extension ZAC des Plattières sur 11 hectares, terrain constructible de 3,5 hectares. Clé en main possible. Idéal pour très grand projet à l'ouest de la Métropole.",
                 link: "https://www.malsh.com/vente/terrain",
-                tags: ["Clé en main possible", "ZAC", "Excentré"],
-                surfaceDetails: "Terrain constructible : 35 000 m² (3,5 ha) sur ZAC 11 ha · Clé en main possible · Pas de bâtiment existant"
+                tags: ["Clé en main possible", "ZAC", "Excentré"]
             },
             {
                 id: 106,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/88711_63904071880643766488711_1.jpg",
                 title: "Terrain zone Ui — 5,094 m²",
                 zone: "Lyon Est",
                 commune: "Lyon",
@@ -1236,15 +1133,13 @@
                 type: "Terrain",
                 description: "Terrain classé zone Ui PLU, idéal pour construction bureaux/activités. Disponibilité Q1 2026. Dimensions : 108 m × ~120 m de profondeur.",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/rhone-69/vente-terrains",
-                tags: ["Zone Ui PLU", "Dispo Q1 2026", "108 × 120 m"],
-                surfaceDetails: "Terrain constructible : 5 094 m² · Dimensions : 108 m × ~120 m · Zone Ui PLU · Dispo Q1 2026"
+                tags: ["Zone Ui PLU", "Dispo Q1 2026", "108 × 120 m"]
             }
         ];
 
         const propertiesStades = [
             {
                 id: 201,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/99829_63899735622142006099829_1.jpg",
                 title: "Bâtiment d'activité — Décines Centre",
                 zone: "ZI La Soie / Décines",
                 commune: "Décines-Charpieu",
@@ -1259,12 +1154,10 @@
                 stadium: "LDLC Arena",
                 distance: "~2 km",
                 tags: ["Carré de Soie", "Tram T3", "2km LDLC Arena"],
-                surfaceDetails: "Bâtiment : 1 530 m² · RDC Activités : 950 m² · RDC Bureaux : 190 m² · Sous-sol stockage : 165 m² · Étage bureaux : 225 m² · Terrain : 2 874 m² · H. faîtage : 6,75 m · Extension possible +500 m² · Dalle charge lourde 10t",
-                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-decines-charpieu-proximite-transports-et-axes-routiers-668424.html"
+                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/decines-charpieu-69150/vente-entrepots"
             },
             {
                 id: 202,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/432_638798344762772171432_1.jpg",
                 title: "Ensemble immobilier 2 bâtiments — Décines",
                 zone: "Parc d'activités des Pivolles",
                 commune: "Décines-Charpieu",
@@ -1279,12 +1172,10 @@
                 stadium: "LDLC Arena",
                 distance: "~1.5 km",
                 tags: ["Rénové 2015", "2 bâtiments", "6028m² terrain", "1.5km LDLC Arena"],
-                surfaceDetails: "Bât. A : 2 100 m² (RDC 1 200 m² activités + Étage 900 m² bureaux) · Bât. B : Lot 1 642 m² (607 activités + 35 bureaux) + Lot 2 450 m² (260 bureaux + 100 communs + 30 sociaux) · Garage : 60 m² · Terrain clos : 6 028 m² · 38 places parking · Terrasse 300 m²",
-                link: "https://www.geolocaux.com/annonce/locaux-d-activites-a-vendre-decines-charpieu-proche-bus-623040.html"
+                link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/decines-charpieu-69150/vente-entrepots"
             },
             {
                 id: 203,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/844d89fa-9017-41fe-8d9d-c17ef3ba4fc6_j00.jpg",
                 title: "Local d'activité indépendant — 2,300 m²",
                 zone: "Zone d'activités Décines",
                 commune: "Décines-Charpieu",
@@ -1299,12 +1190,10 @@
                 stadium: "Groupama Stadium",
                 distance: "~2.5 km",
                 tags: ["2300m²", "Indépendant", "Non divisible", "Groupama Stadium 2.5km"],
-                surfaceDetails: "Bâtiment indépendant : 2 300 m² · Terrain goudronné : surface non précisée · Hauteur libre : 5,00 m · Parking : oui (nb n.c.) · Stockage extérieur : oui · 2 accès plain-pied · Clim réversible · Charpente métal · Sols béton",
-                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-decines-charpieu-ideal-centre-de-formation-591103.html"
+                link: "https://www.bnppre.fr/a-vendre/local-activite/rhone-69/decines-charpieu-69150/vente-local-activite-2300-m2-non-divisible-OVACT2426978.html"
             },
             {
                 id: 204,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/69002_63880290497745287069002_1.jpg",
                 title: "Bâtiment d'activité mixte — Chassieu",
                 zone: "ZI Mi-Plaine Chassieu",
                 commune: "Chassieu",
@@ -1319,12 +1208,10 @@
                 stadium: "Groupama Stadium",
                 distance: "~3 km",
                 tags: ["1000m²", "H=5m", "Fibre optique", "Chassieu ZI", "3km Groupama"],
-                surfaceDetails: "Bureaux : 600 m² · Activité : 400 m² · Hauteur : 5 m · Bâtiment indépendant sur terrain · Fibre, clim, chauffage, porte sectionnelle, triphasé · Cafétéria + salle réunion",
                 link: "https://www.seloger-bureaux-commerces.com/annonces/achat/local-d-activites-entrepot/chassieu-69680/247225255"
             },
             {
                 id: 205,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/516cb5c3-576e-4047-86d1-05355d3398ef_j00.jpg",
                 title: "Local d'activités — Chassieu Centre ZI",
                 zone: "ZI Mi-Plaine",
                 commune: "Chassieu",
@@ -1339,12 +1226,10 @@
                 stadium: "Groupama Stadium",
                 distance: "~3.5 km",
                 tags: ["ZI Mi-Plaine", "A43/A46", "3.5km Groupama"],
-                surfaceDetails: "Activité : 256 m² · Bureaux : 137,65 m² · Mezzanine : 77 m² · Hauteur libre : 5,35–6,50 m · Terrain goudronné · Tous porteurs · Copropriété · Bardage double peau · Bac acier isolé · Vestiaires + douches",
-                link: "https://www.geolocaux.com/annonce/local-d-activite-a-vendre-chassieu-686116.html"
+                link: "https://www.bnppre.fr/a-vendre/local-activite/rhone-69/chassieu-69680/"
             },
             {
                 id: 206,
-                imageUrl: "https://www.geolocaux.com/_ipx/w_600&f_jpeg/photos/350x240/faed007b-1e72-4ded-9843-79be9da28dd4_j00.jpg",
                 title: "Entrepôt logistique — Meyzieu",
                 zone: "ZI Meyzieu-Jonage",
                 commune: "Meyzieu",
@@ -1359,7 +1244,6 @@
                 stadium: "Groupama Stadium",
                 distance: "~3 km",
                 tags: ["2 bâtiments", "6768m² terrain", "T3 Meyzieu", "3km Groupama"],
-                surfaceDetails: "2 bâtiments : ~1 500 m² chacun (~3 000 m² total) · Terrain : 6 768 m² · Usage : stockage / production / bureaux · Détails intérieurs non disponibles sur l'annonce",
                 link: "https://www.bureauxlocaux.com/immobilier-d-entreprise/annonces/meyzieu-69330/vente-entrepots"
             }
         ];
@@ -1368,8 +1252,7 @@
 
         function createPropertyCard(prop, isStade = false) {
             const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${prop.lon - 0.01},${prop.lat - 0.01},${prop.lon + 0.01},${prop.lat + 0.01}&layer=mapnik&marker=${prop.lat},${prop.lon}`;
-            const fallbackImg = `https://staticmap.openstreetmap.de/staticmap.php?center=${prop.lat},${prop.lon}&zoom=15&size=600x300&maptype=mapnik&markers=${prop.lat},${prop.lon},lightblue`;
-            const imageUrl = prop.imageUrl || fallbackImg;
+            const imageUrl = `https://staticmap.openstreetmap.de/staticmap.php?center=${prop.lat},${prop.lon}&zoom=15&size=600x300&maptype=mapnik&markers=${prop.lat},${prop.lon},lightblue`;
 
             let stadiumBadge = '';
             let distanceBadge = '';
@@ -1386,7 +1269,7 @@
             return `
                 <div class="property-card">
                     <div class="property-image">
-                        <a href="${prop.link}" target="_blank" title="Voir les photos de l\'annonce" style="display:block;cursor:pointer;position:relative;overflow:hidden;"><img src="${imageUrl}" alt="${prop.title}" loading="lazy" style="transition:transform 0.3s ease;width:100%;height:200px;object-fit:cover;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="handleImgError(this,${prop.lat},${prop.lon})"><span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:white;padding:4px 12px;border-radius:6px;font-size:0.75rem;pointer-events:none;">Voir les photos</span></a>
+                        <img src="${imageUrl}" alt="${prop.title}" loading="lazy">
                         <div class="property-type-badge">${prop.type}</div>
                         ${distanceBadge}
                         ${stadiumBadge}
@@ -1397,7 +1280,7 @@
                         <div class="property-zone">${prop.zone}</div>
                         <div class="property-details">
                             <div class="detail-row">
-                                <span class="detail-label">Surface totale</span>
+                                <span class="detail-label">Surface</span>
                                 <span class="detail-value">${prop.surface}</span>
                             </div>
                             <div class="detail-row">
@@ -1405,11 +1288,6 @@
                                 <span class="detail-value">${prop.price}</span>
                             </div>
                         </div>
-                        ${prop.surfaceDetails ? `
-                        <div class="surface-breakdown">
-                            <div class="surface-breakdown-title">&#x1F4D0; Détail des surfaces</div>
-                            <div class="surface-breakdown-content">${prop.surfaceDetails.split(' · ').map(item => '<span class="sb-item">' + item.replace(/([0-9][0-9.,]*\s*m²)/g, '<span class="surface-highlight">$1</span>').replace(/([0-9][0-9.,]*\s*ha)/g, '<span class="surface-highlight">$1</span>').replace(/([0-9]+[.,]?[0-9]*\s*m\b)/g, '<span class="surface-highlight">$1</span>') + '</span>').join('<span class="sb-separator"> · </span>')}</div>
-                        </div>` : ''}
                         <div class="property-description">${prop.description}</div>
                         ${tagsHtml ? `<div class="property-tags">${tagsHtml}</div>` : ''}
                         <div class="property-address">
