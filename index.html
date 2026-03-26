@@ -273,19 +273,73 @@
             max-width: 80%;
         }
 
-        /* Map Container */
-        .property-map {
+        /* Map at bottom of card */
+        .property-map-bottom {
             width: 100%;
-            height: 150px;
+            height: 130px;
             border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
+            margin-top: auto;
         }
 
-        .property-map iframe {
+        .property-map-bottom iframe {
             width: 100%;
             height: 100%;
             border: none;
-            border-radius: 0;
+        }
+
+        /* Photo overlay on hover */
+        .photo-overlay {
+            position: absolute;
+            bottom: 8px;
+            right: 8px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .property-image:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .property-image a {
+            display: block;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .property-image a img {
+            transition: transform 0.3s ease;
+        }
+
+        .property-image:hover a img {
+            transform: scale(1.05);
+        }
+
+        /* CTA button */
+        .btn-annonce {
+            display: block;
+            text-align: center;
+            margin-top: 0.75rem;
+            padding: 0.6rem 1rem;
+            background: var(--accent);
+            color: white !important;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .btn-annonce:hover {
+            background: var(--accent-light);
+            transform: translateY(-1px);
         }
 
         /* Property Content */
@@ -552,8 +606,8 @@
             .property-card {
                 margin: 0;
             }
-            .property-map {
-                height: 150px !important;
+            .property-map-bottom {
+                height: 110px;
             }
             .section-title {
                 font-size: 1.3rem;
@@ -644,12 +698,101 @@
 .nav-tab:hover{background:rgba(108,92,231,0.15)}
 .header{position:relative!important}
 }
-</style>
+
+        /* Extra responsive tweaks */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.1rem; }
+            .header p { font-size: 0.8rem; }
+            .tab-btn { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+            .property-image { height: 180px; }
+            .property-content { padding: 1rem; }
+            .property-title { font-size: 1rem; }
+            .property-map-bottom { height: 100px; }
+        }
+
+        @media (min-width: 1200px) {
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    
+        /* Extra responsive tweaks */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.1rem; }
+            .header p { font-size: 0.8rem; }
+            .tab-btn { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+            .property-image { height: 180px; }
+            .property-content { padding: 1rem; }
+            .property-title { font-size: 1rem; }
+            .property-map-bottom { height: 100px; }
+        }
+
+        @media (min-width: 1200px) {
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    
+        /* Extra responsive tweaks */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.1rem; }
+            .header p { font-size: 0.8rem; }
+            .tab-btn { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+            .property-image { height: 180px; }
+            .property-content { padding: 1rem; }
+            .property-title { font-size: 1rem; }
+            .property-map-bottom { height: 100px; }
+        }
+
+        @media (min-width: 1200px) {
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    
+        /* Extra responsive tweaks */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.1rem; }
+            .header p { font-size: 0.8rem; }
+            .tab-btn { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+            .property-image { height: 180px; }
+            .property-content { padding: 1rem; }
+            .property-title { font-size: 1rem; }
+            .property-map-bottom { height: 100px; }
+        }
+
+        @media (min-width: 1200px) {
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    
+        /* Extra responsive tweaks */
+        @media (max-width: 480px) {
+            .header h1 { font-size: 1.1rem; }
+            .header p { font-size: 0.8rem; }
+            .tab-btn { padding: 0.35rem 0.5rem; font-size: 0.7rem; }
+            .property-image { height: 180px; }
+            .property-content { padding: 1rem; }
+            .property-title { font-size: 1rem; }
+            .property-map-bottom { height: 100px; }
+        }
+
+        @media (min-width: 1200px) {
+            .property-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 
     <script>
     function handleImgError(img, lat, lon) {
         img.onerror = null;
-        img.src = 'https://staticmap.openstreetmap.de/staticmap.php?center=' + lat + ',' + lon + '&zoom=15&size=600x300&maptype=mapnik&markers=' + lat + ',' + lon + ',lightblue';
+        img.style.display = 'none';
+        const ph = document.createElement('div');
+        ph.style.cssText = 'width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#1a1a2e 0%,#2d2d5e 100%);color:#a29bfe;font-size:3rem;flex-direction:column;gap:8px;';
+        ph.innerHTML = '<span style="font-size:2.5rem;">🏭</span><span style="font-size:0.8rem;color:#888;">Photo non disponible</span>';
+        img.parentElement.insertBefore(ph, img);
     }
     </script>
 </head>
@@ -1009,7 +1152,7 @@
                 const propertiesLocaux = [
     {
         id: 1,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.735,4.829&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Activité port Édouard Herriot",
         zone: "Port Édouard Herriot",
         commune: "Lyon 7",
@@ -1026,7 +1169,7 @@
     },
     {
         id: 2,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.778,4.805&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Entrepôt divisible",
         zone: "Lyon 9",
         commune: "Lyon 9",
@@ -1043,7 +1186,7 @@
     },
     {
         id: 3,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.697,4.879&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-1.jpg",
         title: "Local activité",
         zone: "Vénissieux",
         commune: "Vénissieux",
@@ -1060,7 +1203,7 @@
     },
     {
         id: 4,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.664,4.956&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/building-1.jpg",
         title: "Local activité",
         zone: "Mions",
         commune: "Mions",
@@ -1077,7 +1220,7 @@
     },
     {
         id: 5,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-2.jpg",
         title: "Local 500m² Parc Champdolin",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -1094,7 +1237,7 @@
     },
     {
         id: 6,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-3.jpg",
         title: "Entrepôt 500m²",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -1111,7 +1254,7 @@
     },
     {
         id: 7,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.736,4.97&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-2.jpg",
         title: "Local 1,000m² à vendre",
         zone: "Chassieu",
         commune: "Chassieu",
@@ -1128,7 +1271,7 @@
     },
     {
         id: 8,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/parking-1.jpg",
         title: "Cellules activité/logistique accès TCL",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -1145,7 +1288,7 @@
     },
     {
         id: 9,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Local activité 2,256m²",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1162,7 +1305,7 @@
     },
     {
         id: 10,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Local activité 2,275m²",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1179,7 +1322,7 @@
     },
     {
         id: 11,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-1.jpg",
         title: "Local activité 1,000m²",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1196,7 +1339,7 @@
     },
     {
         id: 12,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/building-1.jpg",
         title: "Local activité 661m²",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1213,7 +1356,7 @@
     },
     {
         id: 13,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.666,4.902&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-2.jpg",
         title: "Valor Parc 1,298m² rénové",
         zone: "Corbas",
         commune: "Corbas",
@@ -1230,7 +1373,7 @@
     },
     {
         id: 14,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.666,4.902&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-3.jpg",
         title: "ZI Vénissieux-Corbas 3,828m²",
         zone: "Corbas",
         commune: "Corbas",
@@ -1247,7 +1390,7 @@
     },
     {
         id: 15,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.771,4.88&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-2.jpg",
         title: "Coworking industriel 261-1,262m²",
         zone: "Villeurbanne",
         commune: "Villeurbanne",
@@ -1264,7 +1407,7 @@
     },
     {
         id: 16,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.666,4.902&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/parking-1.jpg",
         title: "20 av du 24 Août 1944 Corbas",
         zone: "Corbas",
         commune: "Corbas",
@@ -1281,7 +1424,7 @@
     },
     {
         id: 17,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Zone Terray 622-2,245m²",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -1298,7 +1441,7 @@
     },
     {
         id: 18,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Cellules 701m² Meyzieu",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -1315,7 +1458,7 @@
     },
     {
         id: 19,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.738,4.913&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-1.jpg",
         title: "Local industriel 750m² Bron",
         zone: "Bron",
         commune: "Bron",
@@ -1587,7 +1730,7 @@
     },
     {
         id: 35,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.666,4.902&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/building-1.jpg",
         title: "Local activité 1,111m² Corbas",
         zone: "Corbas",
         commune: "Corbas",
@@ -1604,7 +1747,7 @@
     },
     {
         id: 36,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.729,4.999&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-2.jpg",
         title: "Local activité 1,951m² Genas",
         zone: "Genas",
         commune: "Genas",
@@ -1638,7 +1781,7 @@
     },
     {
         id: 38,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.729,4.999&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-3.jpg",
         title: "Local activité 1,557m² Genas",
         zone: "Genas",
         commune: "Genas",
@@ -1655,7 +1798,7 @@
     },
     {
         id: 39,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.697,4.879&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-2.jpg",
         title: "Local activité 1,249m² Vénissieux",
         zone: "Vénissieux",
         commune: "Vénissieux",
@@ -1672,7 +1815,7 @@
     },
     {
         id: 40,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.697,4.879&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/parking-1.jpg",
         title: "Local activité 715m² Vénissieux",
         zone: "Vénissieux",
         commune: "Vénissieux",
@@ -1723,7 +1866,7 @@
     },
     {
         id: 43,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Local activité 3,377m² Meyzieu",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -1740,7 +1883,7 @@
     },
     {
         id: 44,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Local activité 1,270m² Meyzieu",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -1757,7 +1900,7 @@
     },
     {
         id: 45,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-1.jpg",
         title: "Local activité 1,400m² Décines",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1774,7 +1917,7 @@
     },
     {
         id: 46,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/building-1.jpg",
         title: "Local activité 650m² Saint-Priest",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -1859,7 +2002,7 @@
     },
     {
         id: 51,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.81,4.755&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-2.jpg",
         title: "Local activité 694m² Dardilly",
         zone: "Dardilly",
         commune: "Dardilly",
@@ -1876,7 +2019,7 @@
     },
     {
         id: 52,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-3.jpg",
         title: "Parc du Triangle bâtiment A neuf",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -1893,7 +2036,7 @@
     },
     {
         id: 53,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.77,4.96&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-2.jpg",
         title: "ZAC Pivolles terrain 2,980m²",
         zone: "Décines-Charpieu",
         commune: "Décines",
@@ -1944,7 +2087,7 @@
     },
     {
         id: 56,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/parking-1.jpg",
         title: "Bâtiment activité Meyzieu",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -1961,7 +2104,7 @@
     },
     {
         id: 57,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.736,4.97&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Bâtiment neuf Q2 2026 Chassieu",
         zone: "Chassieu",
         commune: "Chassieu",
@@ -1978,7 +2121,7 @@
     },
     {
         id: 58,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.736,4.97&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Bâtiment neuf Q4 2026 1,642m²",
         zone: "Chassieu",
         commune: "Chassieu",
@@ -1995,7 +2138,7 @@
     },
     {
         id: 59,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.75,4.84&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-1.jpg",
         title: "Local activité 320m²",
         zone: "À définir",
         commune: "À définir",
@@ -2012,7 +2155,7 @@
     },
     {
         id: 60,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/building-1.jpg",
         title: "Local 410m² Saint-Priest",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -2029,7 +2172,7 @@
     },
     {
         id: 61,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-2.jpg",
         title: "Local 650m² Saint-Priest",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -2046,7 +2189,7 @@
     },
     {
         id: 62,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.736,4.97&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-3.jpg",
         title: "Local 620m² Chassieu",
         zone: "Chassieu",
         commune: "Chassieu",
@@ -2063,7 +2206,7 @@
     },
     {
         id: 63,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.736,4.97&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/commercial-2.jpg",
         title: "Local 1,150m² Chassieu Q2 2026",
         zone: "Chassieu",
         commune: "Chassieu",
@@ -2080,7 +2223,7 @@
     },
     {
         id: 64,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.767,5.003&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/parking-1.jpg",
         title: "Terrain 1,700m² avec local Meyzieu",
         zone: "Meyzieu",
         commune: "Meyzieu",
@@ -2097,7 +2240,7 @@
     },
     {
         id: 65,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg",
         title: "Parc divisible Saint-Priest",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -2114,7 +2257,7 @@
     },
     {
         id: 66,
-        imageUrl: "https://staticmap.openstreetmap.de/staticmap.php?center=45.694,4.952&zoom=15&size=400x300&maptype=mapnik",
+        imageUrl: "https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/warehouse-1.jpg",
         title: "Local 600m² avec mezzanine Saint-Priest",
         zone: "Saint-Priest",
         commune: "Saint-Priest",
@@ -2357,7 +2500,7 @@
 
         function createPropertyCard(prop, isStade = false) {
             const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${prop.lon - 0.01},${prop.lat - 0.01},${prop.lon + 0.01},${prop.lat + 0.01}&layer=mapnik&marker=${prop.lat},${prop.lon}`;
-            const fallbackImg = `https://staticmap.openstreetmap.de/staticmap.php?center=${prop.lat},${prop.lon}&zoom=15&size=600x300&maptype=mapnik&markers=${prop.lat},${prop.lon},lightblue`;
+            const fallbackImg = `https://raw.githubusercontent.com/zbalbuflex/arcade-venue-lyon/main/images/industrial-1.jpg`;
             const imageUrl = prop.imageUrl || fallbackImg;
 
             let stadiumBadge = '';
@@ -2375,12 +2518,14 @@
             return `
                 <div class="property-card">
                     <div class="property-image">
-                        <a href="${prop.link}" target="_blank" title="Voir les photos de l\'annonce" style="display:block;cursor:pointer;position:relative;overflow:hidden;"><img src="${imageUrl}" alt="${prop.title}" loading="lazy" style="transition:transform 0.3s ease;width:100%;height:200px;object-fit:cover;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'" onerror="handleImgError(this,${prop.lat},${prop.lon})"><span style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.75);color:white;padding:4px 12px;border-radius:6px;font-size:0.75rem;pointer-events:none;">Voir les photos</span></a>
+                        <a href="${prop.link}" target="_blank" title="Voir l\'annonce">
+                            <img src="${imageUrl}" alt="${prop.title}" loading="lazy" onerror="handleImgError(this,${prop.lat},${prop.lon})">
+                            <span class="photo-overlay">Voir l\'annonce</span>
+                        </a>
                         <div class="property-type-badge">${prop.type}</div>
                         ${distanceBadge}
                         ${stadiumBadge}
                     </div>
-                    <iframe src="${mapUrl}" class="property-map" loading="lazy"></iframe>
                     <div class="property-content">
                         <div class="property-title">${prop.title}</div>
                         <div class="property-zone">${prop.zone}</div>
@@ -2399,12 +2544,10 @@
                         <div class="property-address">
                             <strong>Adresse:</strong> ${prop.address}
                         </div>
-                        <div class="property-gps">GPS: ${prop.gps}</div>
-                        <div class="property-price">
-                            <div class="price-label">Estimation</div>
-                            <div class="price-value">${prop.price}</div>
-                        </div>
-                        ${prop.link ? `<a href="${prop.link}" target="_blank" style="display:block;text-align:center;margin-top:0.75rem;padding:0.5rem 1rem;background:var(--accent);color:white;border-radius:8px;font-size:0.85rem;font-weight:500;text-decoration:none;transition:all 0.2s;">Voir l'annonce →</a>` : ''}
+                        ${prop.link ? `<a href="${prop.link}" target="_blank" class="btn-annonce">Voir l\'annonce &#8594;</a>` : ''}
+                    </div>
+                    <div class="property-map-bottom">
+                        <iframe src="${mapUrl}" loading="lazy" title="Localisation"></iframe>
                     </div>
                 </div>
             `;
